@@ -1,0 +1,268 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{B3697663-6225-4014-8AD5-64EEEB7B16E2}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Ptc.Demo.DataBase</RootNamespace>
+    <AssemblyName>Ptc.Demo.DataBase</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.2\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.2\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="SETOP\ActivityItem.cs">
+      <DependentUpon>SETOPEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SETOP\ActivityItemVoucher.cs">
+      <DependentUpon>SETOPEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SETOP\AspNetRoles.cs">
+      <DependentUpon>SETOPEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SETOP\AspNetRolesDataRange.cs">
+      <DependentUpon>SETOPEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SETOP\AspNetRolesPageAuth.cs">
+      <DependentUpon>SETOPEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SETOP\AspNetUserClaims.cs">
+      <DependentUpon>SETOPEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SETOP\AspNetUserLogins.cs">
+      <DependentUpon>SETOPEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SETOP\AspNetUsers.cs">
+      <DependentUpon>SETOPEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SETOP\AspNetUsersDataRange.cs">
+      <DependentUpon>SETOPEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SETOP\AspNetUsersPageAuth.cs">
+      <DependentUpon>SETOPEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SETOP\Bank.cs">
+      <DependentUpon>SETOPEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SETOP\Banner.cs">
+      <DependentUpon>SETOPEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SETOP\Brand.cs">
+      <DependentUpon>SETOPEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SETOP\Category.cs">
+      <DependentUpon>SETOPEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SETOP\CompareString.cs">
+      <DependentUpon>SETOPEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SETOP\ExchangeCondition.cs">
+      <DependentUpon>SETOPEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SETOP\GetMamberNotUseVouchers_Result.cs">
+      <DependentUpon>TradeEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SETOP\GetMamberVouchers_Result.cs">
+      <DependentUpon>TradeEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SETOP\Item.cs">
+      <DependentUpon>SETOPEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SETOP\MemberFavoriteActivityItem.cs">
+      <DependentUpon>SETOPEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SETOP\MemberVoucher12.cs">
+      <DependentUpon>TradeEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SETOP\MemberVoucher22.cs">
+      <DependentUpon>TradeEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SETOP\MemberVoucher95.cs">
+      <DependentUpon>TradeEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SETOP\MemberVoucheraa.cs">
+      <DependentUpon>TradeEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SETOP\MemberVoucherBase.cs">
+      <DependentUpon>TradeEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SETOP\MemberVoucherExpireCount_Result.cs">
+      <DependentUpon>TradeEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SETOP\MemberVoucherff.cs">
+      <DependentUpon>TradeEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SETOP\MemberVoucherHistory.cs">
+      <DependentUpon>TradeEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SETOP\OpenPointMember.cs">
+      <DependentUpon>TradeEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SETOP\OpenPointMemberStar.cs">
+      <DependentUpon>SETOPEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SETOP\PageContent.cs">
+      <DependentUpon>SETOPEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SETOP\RewardActivity.cs">
+      <DependentUpon>SETOPEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SETOP\SETOPEntities.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SETOPEntities.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SETOP\SETOPEntities.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SETOPEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SETOP\SETOPEntities.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SETOPEntities.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="SETOP\sp_helpdiagramdefinition_Result.cs">
+      <DependentUpon>TradeEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SETOP\sp_helpdiagrams_Result.cs">
+      <DependentUpon>TradeEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SETOP\StopMachine.cs">
+      <DependentUpon>SETOPEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SETOP\STRING_SPLIT_Result.cs">
+      <DependentUpon>TradeEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SETOP\sysdiagrams.cs">
+      <DependentUpon>TradeEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SETOP\TempVoucherHeader.cs">
+      <DependentUpon>SETOPEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SETOP\Trade.cs">
+      <DependentUpon>TradeEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SETOP\TradeEntities.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TradeEntities.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SETOP\TradeEntities.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TradeEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SETOP\TradeEntities.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TradeEntities.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="SETOP\VoucherDetail.cs">
+      <DependentUpon>TradeEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SETOP\VoucherHeader.cs">
+      <DependentUpon>SETOPEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UserAuthentication\Identity.cs" />
+    <Compile Include="UserAuthentication\IdentityUser.cs" />
+    <Compile Include="UserAuthentication\UserStore.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Ptc.Demo.Domain\Ptc.Demo.Domain.csproj">
+      <Project>{910FB2D5-A8F5-49FE-95D4-93CFE164922E}</Project>
+      <Name>Ptc.Demo.Domain</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.Config" />
+    <None Include="packages.config" />
+    <EntityDeploy Include="SETOP\SETOPEntities.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>SETOPEntities.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="SETOP\SETOPEntities.edmx.diagram">
+      <DependentUpon>SETOPEntities.edmx</DependentUpon>
+    </None>
+    <EntityDeploy Include="SETOP\TradeEntities.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>TradeEntities.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="SETOP\TradeEntities.edmx.diagram">
+      <DependentUpon>TradeEntities.edmx</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Content Include="SETOP\SETOPEntities.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>SETOPEntities.edmx</DependentUpon>
+      <LastGenOutput>SETOPEntities.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="SETOP\SETOPEntities.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>SETOPEntities.edmx</DependentUpon>
+      <LastGenOutput>SETOPEntities.cs</LastGenOutput>
+    </Content>
+    <Content Include="SETOP\TradeEntities.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>TradeEntities.edmx</DependentUpon>
+      <LastGenOutput>TradeEntities.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="SETOP\TradeEntities.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>TradeEntities.edmx</DependentUpon>
+      <LastGenOutput>TradeEntities.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

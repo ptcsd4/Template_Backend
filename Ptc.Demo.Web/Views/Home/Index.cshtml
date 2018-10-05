@@ -1,0 +1,257 @@
+﻿@model Ptc.Demo.Web.Models.BrandViewModel
+
+<div class="row">
+    <div class="col-xs-12">
+        @using (Html.BeginForm("GetList", "Home", FormMethod.Post, new { @id = "searchForm", @name = "searchForm", @class = "form-horizontal", @role = "form", @enctype = "multipart/form-data" }))
+        {
+            <!--RWD condition ctrl-->
+            <div type="button" class="visible-xs visible-sm hidden-md hidden-lg  btn btn-default ptc-dismiss">隱藏篩選條件</div>
+            <!--end RWD condition ctrl -->
+
+            <!--dynamic tabs-->
+            <div class="row ptc-conditions">
+                <!--clone block-->
+                <div clsss="ptc-content-clone" hidden>
+                    <button type="button" class="ptc-cancel" data-toggle="tooltip btn btn-secondary" data-placement="bottom" title="移除條件">x</button>
+                    <div class="container-fluid">
+                        <!--名稱-->
+                        <div class="col-xs-12 col-sm-4">
+                            <div class="form-group">
+                                <label class="col-xs-12 col-sm-12 col-md-4 col-lg-4 control-label">@Html.DisplayNameFor(x => x.Name)</label>
+                                <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+                                    @Html.TextBoxFor(x => x.Name, new { @class = "form-control" })
+                                </div>
+                            </div>
+                        </div>
+                        <!--停用-->
+                        <div class="col-xs-12 col-sm-4">
+                            <div class="form-group">
+                                <label class="col-xs-12 col-sm-12 col-md-4 col-lg-4 control-label">@Html.DisplayNameFor(x => x.IsDisabled)</label>
+                                <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+                                    @Html.DropDownListFor(x => x.IsDisabled, Model.DisableList, new { @class = "form-control" })
+                                </div>
+                            </div>
+                        </div>
+                        <!--品牌館-->
+                        <div class="col-xs-12 col-sm-4">
+                            <div class="form-group">
+                                <label class="col-xs-12 col-sm-12 col-md-4 col-lg-4 control-label">@Html.DisplayNameFor(x => x.IsHaveStore)</label>
+                                <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+                                    @Html.DropDownListFor(x => x.IsHaveStore, Model.HaveStoreList, new { @class = "form-control" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--end clone block-->
+                <!--tabs block-->
+                <ul class="ptc-tabs nav nav-tabs"></ul>
+                <!--end tabs block-->
+                <!--content block-->
+                <div class="ptc-content tab-content"></div>
+                <!--end content block-->
+
+            </div>
+            <!--end dynamic tabs-->
+
+            <!--btn block-->
+            <div class="row">
+                <div class="col-xs-12 text-center">
+                    <button type="submit" class="btn-search btn-sm AuthRead" id="searchBtn" name="searchBtn" data-loading-text="處理中...">查詢</button>
+                </div>
+            </div>
+            <!--end btn block-->
+        }
+
+
+
+    </div>
+</div>
+
+<div class="row">
+    <div id="grid-table">
+
+        <!--table header-->
+        <div class="table-header text-center">
+            <span>品牌通路</span>
+            <span class="pull-right" style="display: inline-flex;">
+                <button class="btn btn-sm btn-danger" type="button" title="勾選項目後刪除" onclick="Remove()">
+                    刪除
+                </button>
+                <button class="btn btn-sm btn-warning" type="button" title="新增" onclick="AddPage()">
+                    新增
+                </button>
+
+            </span>
+        </div>
+        <!--end table header-->
+        <!--result table-->
+        <table class="table table-bordered table-striped table-bordered dt-responsive nowrap" id="resultTable">
+            <thead>
+                <tr role="row">
+                    <th class="center" role="columnheader"><span>全選 @Html.CheckBox("checkAll")</span></th>
+                    <th class="center" role="columnheader">排序</th>
+                    <th class="center" role="columnheader">名稱</th>
+                    <th class="center" role="columnheader">開始日期</th>
+                    <th class="center" role="columnheader">停用</th>
+                    <th class="center" role="columnheader">品牌館</th>
+                    <th class="center" role="columnheader">編輯</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+        <!--end result table-->
+
+    </div>
+</div>
+
+@section scripts{
+
+    <!--methods -->
+    <script type="text/javascript">
+        //刪除行為
+        function Remove() {
+
+            var ids = [];
+
+            $('input[name="cbx"]:checked').each(function () {
+                ids.push($(this).val());
+            });
+
+
+            if (!ids || ids.length == 0) {
+                window.PTC.alertError("錯誤 , 請至少選擇一個項目");
+                return;
+            }
+
+            window.PTC.alertPop.promise({
+                title: "是否刪除",
+                message: "選擇確定 / 取消",
+                data: ids,
+                type: window.PTC.Enum.AlertPopType.question
+            },
+                doRemove,
+                function (data) { }
+            );
+
+            function doRemove(data) {
+
+                 $.ajax({
+                    url: '@Url.Action("Remove", "Home")',
+                    contentType: 'application/json; charset=utf-8',
+                    type: 'POST',
+                    data: JSON.stringify(data),
+                    dataType: 'json',
+                    success: function (data) {
+                        if (data.IsSuccess) {
+                            $('#searchBtn').click();  //research
+                            window.PTC.alertInfo(data.Message);
+                        } else {
+                            window.PTC.alertWarning(data.Message);
+                        }
+                         window.PTC.alertPop.close();
+                     },
+                    error: function (xhr, ajaxOptions, thrownError) {
+                        window.PTC.alertError(thrownError);
+                        window.PTC.alertPop.close();
+                    }
+                });
+            }
+        }
+        //新增畫面
+        function AddPage() {
+              direct('@Url.Action("AddPage", "Home")');
+        }
+
+        //明細畫面
+        function EditPage($event) {
+            direct('@Url.Action("EditPage", "Home")', {
+                ID: $event
+            });
+        }
+
+    </script>
+    <!--end method-->
+    <!--validation-->
+    <script type="text/javascript">
+        $('#searchForm').PTCValidation({});
+
+        function InitValidation(index) {
+            $(`#c${index} #Name`).rules("add", {
+                required: true,
+            });
+           
+        }
+
+        function IsValid() {
+            var isValid = true;
+            var validator = $('#searchForm').validate();
+            $('#searchForm').find(".ptc-content input").each(function () {
+                if (!validator.element($(this))) {
+                    console.log(this);
+                    $('a[href="#'+ $(this).closest('.tab-pane').attr('id')  + '"'+']').tab('show');
+                    isValid = false;
+                }
+            });
+            return isValid;
+        }
+
+    </script>
+    <!--tabs-->
+    <script type="text/javascript">
+        $('.ptc-tabs').PTCDynamicTabs({
+            initUI: function (index) {
+                InitValidation(index);
+            }
+        });
+
+    </script>
+    <!--end tabs-->
+    <!--dataTable-->
+    <script type="text/javascript">
+
+        var columns = [
+            {
+                targets: 0,
+                searchable: false,
+                orderable: false,
+                className: 'text-center',
+                name: "ID",
+                id: "ID",
+                render: function (data, type, full, meta) {
+                    return `<input name="cbx" type="checkbox" value="${data}"/>`;
+                }
+
+            },
+            { targets: 1, name: "Sort", id: "Sort", className: 'text-center' },
+            { targets: 2, name: "Name", id: "Name", className: 'text-center' },
+            { targets: 3, name: "StartDate", id: "StartDate", className: 'text-center' },
+            { targets: 4, name: "IsDisabled", id: "IsDisabled", className: 'text-center' },
+            { targets: 5, name: "IsHaveStore", id: "IsHaveStore", className: 'text-center' },
+            {
+                targets: 6,
+                className: 'text-center',
+                searchable: false,
+                orderable: false,
+                render: function (data, type, full, meta) {
+                    return `<button  type="button" onclick="EditPage(${data})" role="button" class="btn btn-xs btn-success rowTabholdOK` +
+                        `"><i class="ace-icon fa fa-pencil bigger-120"></i></button>`;
+
+                }
+            }
+        ];
+
+        $('#resultTable').PTCDataTable({
+            colmDefs: columns,
+            form: "#searchForm",
+            validate: this.IsValid,
+            refill: function (criteria) {
+                console.log("回填喔");
+                console.log(criteria);
+            }
+        });
+
+    </script>
+    <!--end dataTable-->
+
+}

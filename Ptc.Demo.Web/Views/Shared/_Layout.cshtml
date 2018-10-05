@@ -1,0 +1,172 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta charset="utf-8" />
+    <title>PTC 後台式樣</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+
+    @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/css/Ace") 
+    @Styles.Render("~/Content/css/Bs-DateTime")
+    @Styles.Render("~/Content/css/Bs-Select2")
+    @Styles.Render("~/Content/css/Krajee-FileInput")
+    @Styles.Render("~/Content/css/SweetAlert2")
+    @Styles.Render("~/Content/css/JQuery-DataTable")
+    @Styles.Render("~/Content/css/Bs-Duallistbox")
+    @Styles.Render("~/Content/css/Flora-Editor")
+    <link href="~/Content/Demo.css" rel="stylesheet" />
+
+    @RenderSection("css", required: false)
+
+
+</head>
+
+<body class="no-skin">
+    <!-- #section:basics/navbar.layout -->
+    <div id="navbar" class="navbar navbar-default navbar-inverse">
+        <script type="text/javascript">
+            try { ace.settings.check('navbar', 'fixed') } catch (e) { }
+
+        </script>
+
+        <div class="navbar-container" id="navbar-container">
+            <!-- #section:basics/sidebar.mobile.toggle -->
+            <button type="button" class="navbar-toggle menu-toggler pull-left" id="menu-toggler" data-target="#sidebar">
+                <span class="sr-only">Toggle sidebar</span>
+
+                <span class="icon-bar"></span>
+
+                <span class="icon-bar"></span>
+
+                <span class="icon-bar"></span>
+            </button>
+
+            <!-- /section:basics/sidebar.mobile.toggle -->
+            <div class="navbar-header pull-left">
+                <!-- #section:basics/navbar.layout.brand -->
+                <a href="#" class="navbar-brand">
+                    <small>
+                        <i class="fa fa-leaf"></i>
+                        PTC 後台式樣
+                    </small>
+                </a>
+            </div>
+
+            <!-- #section:basics/navbar.dropdown -->
+            <div class="navbar-buttons navbar-header pull-right" role="navigation">
+                <ul class="nav ace-nav  ">
+                    <!-- #section:basics/navbar.user_menu -->
+                    <li class="text-right">
+                        <a data-toggle="dropdown" href="#" class="dropdown-toggle">
+                            @*<img class="nav-user-photo" src="@Url.Content("~/assets/avatars/user.jpg")" alt="Jason's Photo" />*@
+                            <span class="user-info">
+                                <small>歡迎光臨</small>
+                                @Html.Raw(this.User.Identity is Ptc.Demo.DataBase.UserAuthentication.Identity ? ((Ptc.Demo.DataBase.UserAuthentication.Identity)this.User.Identity).Name : "")
+                            </span>
+
+                            <i class="ace-icon fa fa-caret-down"></i>
+                        </a>
+
+                        <ul class="user-menu pull-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
+                            @*<li>
+                                    <a href="@Url.Action("MembersModify", "Members")">
+                                        <i class="icon-key"></i>
+                                        密碼變更
+                                    </a>
+                                </li>*@
+                            <li>
+                                <a href="@Url.Action("LogOff", "Account", new { })">
+                                    <i class="ace-icon fa fa-power-off"></i>
+                                    登出
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- /section:basics/navbar.dropdown -->
+        </div><!-- /.navbar-container -->
+    </div>
+
+    <!-- /section:basics/navbar.layout -->
+    <div class="main-container" id="main-container">
+        <!-- #section:basics/sidebar -->
+        <div id="sidebar" class="sidebar responsive">
+            <script type="text/javascript">
+                try { ace.settings.check('sidebar', 'fixed') } catch (e) { }
+            </script>
+
+            <div class="sidebar-shortcuts" id="sidebar-shortcuts">
+                <div class="sidebar-shortcuts-large" id="sidebar-shortcuts-large">
+                    系統選單
+                </div>
+
+                <div class="sidebar-shortcuts-mini" id="sidebar-shortcuts-mini">
+                    <i class="ace-icon fa fa-bars"></i>
+                </div>
+            </div>
+
+            @Html.MvcSiteMap().Menu("BootstrapMenuHelperModel", false)
+
+
+            @*@Html.MvcSiteMap(((Ptc.AspnetMvc.Models.PtcIdentity)this.User.Identity).currentUser.UserId).Menu("BootstrapMenuHelperModel")*@
+
+            <!-- #section:basics/sidebar.layout.minimize -->
+            <div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">
+                <i class="ace-icon fa fa-angle-double-left" data-icon1="ace-icon fa fa-angle-double-left" data-icon2="ace-icon fa fa-angle-double-right"></i>
+            </div>
+
+            <!-- /section:basics/sidebar.layout.minimize -->
+            <script type="text/javascript">
+                try { ace.settings.check('sidebar', 'collapsed') } catch (e) { }
+            </script>
+        </div>
+
+        <!-- /section:basics/sidebar -->
+        <div class="main-content">
+            <div class="main-content-inner">
+                @Html.Partial("_Breadcrumbs")
+                <div class="page-content">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <!-- PAGE CONTENT BEGINS -->
+                            @RenderBody()
+                            <app-root></app-root>
+                            <!-- PAGE CONTENT ENDS -->
+                        </div><!-- /.col -->
+                    </div><!-- /.row -->
+                </div><!-- /.page-content -->
+            </div><!-- /.main-content-inner -->
+        </div><!-- /.main-content -->
+    </div><!-- /.main-container -->
+
+
+
+    @Scripts.Render("~/Scripts/js/Ace/Rainbow")
+    @Scripts.Render("~/Scripts/js/JQuery")
+    @Scripts.Render("~/Scripts/js/JQueryui")
+    @Scripts.Render("~/Scripts/js/Bootstrap")
+    @Scripts.Render("~/Scripts/js/Ace")
+    @Scripts.Render("~/Scripts/js/Bs-DateTime")
+    @Scripts.Render("~/Scripts/js/Ptc-Tab")
+    @Scripts.Render("~/Scripts/js/Sweetalert2")
+    @Scripts.Render("~/Scripts/js/JQuery-DataTable")
+    @Scripts.Render("~/Scripts/js/Krajee-FileInput")
+    @Scripts.Render("~/Scripts/js/Bs-Duallistbox")
+    @Scripts.Render("~/Scripts/js/JQuery-Validator")
+    @Scripts.Render("~/Scripts/js/Bs-Select2")
+    @Scripts.Render("~/Scripts/js/Flora-Editor")
+    @Scripts.Render("~/Scripts/js/Global")
+
+
+    
+    @RenderSection("scripts", required: false)
+
+</body>
+
+</html>
+
