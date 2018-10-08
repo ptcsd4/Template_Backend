@@ -24,11 +24,17 @@ namespace Ptc.Demo.Domain.Common
             this.Message = Message;
 
         }
-
         public JsonResult(T Element, bool IsSuccess)
         {
             this.IsSuccess = IsSuccess;
             this.Element = Element;
+        }
+        public JsonResult(T Element , bool IsSuccess, string Message)
+        {
+            this.Element = Element;
+            this.IsSuccess = IsSuccess;
+            this.Message = Message;
+
         }
 
 

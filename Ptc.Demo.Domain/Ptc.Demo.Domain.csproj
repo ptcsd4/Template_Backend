@@ -45,16 +45,26 @@
     <Compile Include="Business\Class\Trade.cs" />
     <Compile Include="Business\Class\User.cs" />
     <Compile Include="Common\JsonResult.cs" />
+    <Compile Include="GoogleMap\Coordinate.cs" />
+    <Compile Include="GoogleMap\Geometry.cs" />
+    <Compile Include="GoogleMap\GooglePlacesPoint.cs" />
+    <Compile Include="GoogleMap\LocationType.cs" />
+    <Compile Include="GoogleMap\NearbySearchLocation.cs" />
+    <Compile Include="GoogleMap\NearbySearchOpenInfo.cs" />
+    <Compile Include="GoogleMap\NearbySearchParameter.cs" />
+    <Compile Include="GoogleMap\NearbySearchPhoto.cs" />
+    <Compile Include="GoogleMap\NearbySearchResult.cs" />
+    <Compile Include="GoogleMap\Viewport.cs" />
     <Compile Include="Menu\MenuControllerNode.cs" />
     <Compile Include="Menu\MenuNode.cs" />
     <Compile Include="Menu\MenuNodeAttribute.cs" />
     <Compile Include="Menu\MenuPrefixNode.cs" />
     <Compile Include="Menu\MenuRootsData.cs" />
     <Compile Include="Menu\SiteMenu.cs" />
+    <Compile Include="Profile\ProfileSource.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service\IGoogleMapProvider.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Service\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -266,6 +266,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Api_Controllers\BaseApiController.cs" />
+    <Compile Include="Api_Controllers\GoogleMapApiController.cs" />
     <Compile Include="Api_Controllers\TradeApiController.cs" />
     <Compile Include="Api_Controllers\UserApiController.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
@@ -295,6 +297,7 @@
     <Compile Include="Identity\ApplicationUserManager.cs" />
     <Compile Include="Identity\PasswordManager.cs" />
     <Compile Include="Models\Account\AccountViewModel.cs" />
+    <Compile Include="Models\Api\User\UserApiViewModel.cs" />
     <Compile Include="Models\DataTableReqModel.cs" />
     <Compile Include="Models\DataTableRespModel.cs" />
     <Compile Include="Models\Home\BrandListViewModel.cs" />

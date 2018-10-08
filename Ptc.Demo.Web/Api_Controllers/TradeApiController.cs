@@ -3,6 +3,7 @@ using Ptc.Data.Condition2.Mssql.Repository;
 using Ptc.Demo.DataBase.SETOP;
 using Ptc.Demo.Domain.Business.Class;
 using Ptc.Demo.Domain.Common;
+using Ptc.Demo.Web.Filters;
 using Ptc.Logger;
 using System;
 using System.Collections.Generic;
@@ -15,7 +16,8 @@ using Trade = Ptc.Demo.Domain.Business.Class.Trade;
 
 namespace Ptc.Demo.Web.Api_Controllers
 {
-    public class TradeApiController : ApiController
+    [TokenAuthenticationFilter]
+    public class TradeApiController : BaseApiController
     {
         private readonly ILogger _Logger;
         private readonly IMSSQLRepository<DataBase.SETOP.Trade, Trade> _TradeRepo;

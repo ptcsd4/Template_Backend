@@ -89,7 +89,10 @@
     <Compile Include="Automapper\SETOP\SETOPMapper.cs" />
     <Compile Include="Automapper\SETOP\TradeMapper.cs" />
     <Compile Include="Automapper\SETOP\UserMapper.cs" />
+    <Compile Include="Profile\AppProfile.cs" />
+    <Compile Include="Profile\GoogleMapProfile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Provider\GoogleMapProvider.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Facade\" />
@@ -112,6 +115,10 @@
     <ProjectReference Include="..\Ptc.Demo.Domain\Ptc.Demo.Domain.csproj">
       <Project>{910fb2d5-a8f5-49fe-95d4-93cfe164922e}</Project>
       <Name>Ptc.Demo.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Ptc.Demo.Shared\Ptc.Demo.Shared.csproj">
+      <Project>{036864B4-5697-46C6-ABEF-F1CAAA011DF3}</Project>
+      <Name>Ptc.Demo.Shared</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

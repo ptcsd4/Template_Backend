@@ -2,6 +2,8 @@
 using Ptc.Demo.DataBase.SETOP;
 using Ptc.Demo.Domain.Business.Class;
 using Ptc.Demo.Domain.Common;
+using Ptc.Demo.Shared.Utility;
+using Ptc.Demo.Web.Models.Api.User;
 using Ptc.Logger;
 using System;
 using System.Collections.Generic;
@@ -13,7 +15,8 @@ using System.Web.Http;
 
 namespace Ptc.Demo.Web.Api_Controllers
 {
-    public class UserApiController : ApiController
+    [AllowAnonymous]
+    public class UserApiController : BaseApiController
     {
         private readonly ILogger _Logger;
         private readonly IMSSQLRepository<AspNetUsers, User> _UserRepo;
@@ -26,27 +29,46 @@ namespace Ptc.Demo.Web.Api_Controllers
             _UserRepo = UserRepo;
         }
 
-        [HttpPost]
-        public HttpResponseMessage GetList()
+        [HttpGet]
+        public HttpResponseMessage Login(string AccountID, string Password)
         {
             try
             {
-                var users = _UserRepo.GetList();
+
+                var currentUser = _UserRepo.Get(x => x.UserName == AccountID &&
+                                                     x.PasswordHash == Password);
+
+                if (currentUser == null) throw new NullReferenceException("帳號或密碼輸入錯誤");
+
+                string token = TokenUtility<User>.Create(new User()
+                {
+                    UserID = currentUser.UserID,
+                    UserName = currentUser.UserName
+                });
 
                 return Request.CreateResponse(
-                       HttpStatusCode.OK,
-                       new JsonResult<IEnumerable<User>>(users, true));
+                HttpStatusCode.OK,
+                new JsonResult<UserApiViewModel>(new UserApiViewModel(currentUser)
+                {
+                    Token = token
+                },
+                true, 
+                "登入成功"));
+
 
             }
             catch (Exception ex)
             {
+
                 _Logger.Error(ex.Message);
 
                 return Request.CreateResponse(
-                        HttpStatusCode.OK,
-                        new JsonResult<Boolean>(false, $"{ex.Message}"));
+                    HttpStatusCode.OK,
+                    new JsonResult<Boolean>(false));
             }
         }
+
+   
 
 
 
